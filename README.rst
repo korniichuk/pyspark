@@ -1,9 +1,13 @@
 .. contents:: Table of contents
    :depth: 2
 
+Short Description
+================
+Apache PySpark
+
 Full description
 ================
-The `korniichuk/pyspark <https://hub.docker.com/r/korniichuk/pyspark/>`_ Docker image for the dataops utility.
+The `ubuntu:xenial <https://hub.docker.com/r/_/ubuntu/>`_ Docker image with Apache PySpark for the dataops utility.
 
 GitHub
 ======
