@@ -1,6 +1,7 @@
 # Name: korniichuk/pyspark
 # Short Description: Apache PySpark
-# Full Description: The ubuntu:xenial Docker image with Apache PySpark for the dataops utility.
+# Full Description: The ubuntu:xenial Docker image with Apache PySpark
+# for the dataops utility.
 # Version: 0.1a1
 
 FROM ubuntu:xenial
