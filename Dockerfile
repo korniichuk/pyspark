@@ -2,7 +2,7 @@
 # Short Description: Apache PySpark
 # Full Description: The ubuntu:xenial Docker image with Apache PySpark
 # for the dataops utility.
-# Version: 0.1a1
+# Version: 0.1a2
 
 FROM ubuntu:xenial
 
@@ -16,9 +16,11 @@ ENV OS_REFRESHED_AT 2016-11-11
 RUN apt-get -qq update # -qq -- no output except for errors
 
 # 2. APT
-# Install g++, wget, pigz
+# Install g++, nano, pigz, wget
 ENV APT_REFRESHED_AT 2016-11-11
-RUN apt-get -qq update && apt-get install -y g++ wget pigz && apt-get clean
+RUN apt-get -qq update \
+        && apt-get install -y g++ nano pigz wget \
+        && apt-get clean
 
 # 3. JAVA
 # Install java
