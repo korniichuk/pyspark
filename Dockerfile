@@ -2,7 +2,7 @@
 # Short Description: Apache PySpark
 # Full Description: The ubuntu:xenial Docker image with Apache PySpark
 # for the dataops utility.
-# Version: 0.1a2
+# Version: 0.1a3
 
 FROM ubuntu:xenial
 
@@ -50,15 +50,13 @@ ENV URL=$URL_SCHEME://$URL_NETLOC$URL_PATH
 RUN wget --directory-prefix /tmp $URL
 # Unpack '/tmp/spark-2.0.1-bin-hadoop2.7.tgz' archive
 RUN unpigz --to-stdout /tmp/spark-2.0.1-bin-hadoop2.7.tgz \
-        | tar --extract --file - --directory /home
+        | tar --extract --file - --directory /usr/local/src
 # Remove '/tmp/spark-2.0.1-bin-hadoop2.7.tgz' archive
 RUN rm /tmp/spark-2.0.1-bin-hadoop2.7.tgz
 # Set up Apache Spark
-ENV SPARK_HOME=/home/spark-2.0.1-bin-hadoop2.7
-ENV PYTHON_DIR_PATH=/home/spark-2.0.1-bin-hadoop2.7/python/
-ENV PY4J_PATH=/home/spark-2.0.1-bin-hadoop2.7/python/lib/py4j-0.10.3-src.zip
+ENV SPARK_HOME=/usr/local/src/spark-2.0.1-bin-hadoop2.7
+ENV PYTHON_DIR_PATH=$SPARK_HOME/python/
+ENV PY4J_PATH=$SPARK_HOME/python/lib/py4j-0.10.3-src.zip
 ENV PYTHONPATH=$PYTHON_DIR_PATH:$PY4J_PATH
-COPY docker/log4j.properties \
-        /home/spark-2.0.1-bin-hadoop2.7/conf/log4j.properties
-COPY docker/spark-defaults.conf \
-        /home/spark-2.0.1-bin-hadoop2.7/conf/spark-defaults.conf
+COPY docker/log4j.properties $SPARK_HOME/conf/log4j.properties
+COPY docker/spark-defaults.conf $SPARK_HOME/conf/spark-defaults.conf
