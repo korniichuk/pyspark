@@ -2,7 +2,7 @@
 # Short Description: Apache PySpark
 # Full Description: The ubuntu:xenial Docker image with Apache PySpark
 # for the dataops utility.
-# Version: 0.1a5
+# Version: 0.1a6
 
 FROM ubuntu:xenial
 
@@ -64,8 +64,6 @@ COPY docker/spark-defaults.conf $SPARK_HOME/conf/spark-defaults.conf
 # 6. SECURITY
 # Add new 'pyspark' user
 RUN useradd -c "Apache PySpark" -m -s /bin/bash pyspark
-# Setup sudo w/o password for 'pyspark' user
-RUN echo "pyspark ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 # Change password for 'pyspark' user
 RUN echo "pyspark:pyspark" | chpasswd
 USER pyspark
