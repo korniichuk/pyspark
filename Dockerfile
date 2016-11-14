@@ -2,7 +2,7 @@
 # Short Description: Apache PySpark
 # Full Description: The ubuntu:xenial Docker image with Apache PySpark
 # for the dataops utility.
-# Version: 0.1a3
+# Version: 0.1a4
 
 FROM ubuntu:xenial
 
@@ -60,3 +60,13 @@ ENV PY4J_PATH=$SPARK_HOME/python/lib/py4j-0.10.3-src.zip
 ENV PYTHONPATH=$PYTHON_DIR_PATH:$PY4J_PATH
 COPY docker/log4j.properties $SPARK_HOME/conf/log4j.properties
 COPY docker/spark-defaults.conf $SPARK_HOME/conf/spark-defaults.conf
+
+# 6. SECURITY
+# Add new 'pyspark' user
+RUN useradd -c "PySpark" -m -s /bin/bash pyspark
+# Setup sudo w/o password for 'pyspark' user
+RUN echo "pyspark ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+# Change password for 'pyspark' user
+RUN echo "pyspark:pyspark" | chpasswd
+USER pyspark
+WORKDIR /home/pyspark
