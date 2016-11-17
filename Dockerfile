@@ -42,19 +42,19 @@ RUN python /tmp/get-pip.py
 RUN rm /tmp/get-pip.py
 
 # 5. SPARK
-# Download Apache Spark ver. 2.0.1 (2016-10-03) to '/tmp' directory
+# Download Apache Spark ver. 2.0.2 (2016-11-14) to '/tmp' directory
 ENV URL_SCHEME=http
-ENV URL_NETLOC=ftp.ps.pl
-ENV URL_PATH=/pub/apache/spark/spark-2.0.1/spark-2.0.1-bin-hadoop2.7.tgz
+ENV URL_NETLOC=d3kbcqa49mib13.cloudfront.net
+ENV URL_PATH=/spark-2.0.2-bin-hadoop2.7.tgz
 ENV URL=$URL_SCHEME://$URL_NETLOC$URL_PATH
 RUN wget --directory-prefix /tmp $URL
-# Unpack '/tmp/spark-2.0.1-bin-hadoop2.7.tgz' archive
-RUN unpigz --to-stdout /tmp/spark-2.0.1-bin-hadoop2.7.tgz \
+# Unpack '/tmp/spark-2.0.2-bin-hadoop2.7.tgz' archive
+RUN unpigz --to-stdout /tmp/spark-2.0.2-bin-hadoop2.7.tgz \
         | tar --extract --file - --directory /usr/local/src
-# Remove '/tmp/spark-2.0.1-bin-hadoop2.7.tgz' archive
-RUN rm /tmp/spark-2.0.1-bin-hadoop2.7.tgz
+# Remove '/tmp/spark-2.0.2-bin-hadoop2.7.tgz' archive
+RUN rm /tmp/spark-2.0.2-bin-hadoop2.7.tgz
 # Set up Apache Spark
-ENV SPARK_HOME=/usr/local/src/spark-2.0.1-bin-hadoop2.7
+ENV SPARK_HOME=/usr/local/src/spark-2.0.2-bin-hadoop2.7
 ENV PYTHON_DIR_PATH=$SPARK_HOME/python/
 ENV PY4J_PATH=$SPARK_HOME/python/lib/py4j-0.10.3-src.zip
 ENV PYTHONPATH=$PYTHON_DIR_PATH:$PY4J_PATH
