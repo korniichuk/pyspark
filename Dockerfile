@@ -2,7 +2,7 @@
 # Short Description: Apache PySpark
 # Full Description: The ubuntu:xenial Docker image with Apache PySpark
 # for the dataops utility.
-# Version: 0.1a7
+# Version: 0.1a8
 
 FROM ubuntu:xenial
 
@@ -12,29 +12,29 @@ USER root
 
 # 1. OS
 # Retrieve new lists of packages
-ENV OS_REFRESHED_AT 2017-03-20
+ENV OS_REFRESHED_AT 2017-04-21
 RUN apt-get -qq update # -qq -- no output except for errors
 
 # 2. APT
 # Install g++, nano, pigz, wget
-ENV APT_REFRESHED_AT 2017-03-20
+ENV APT_REFRESHED_AT 2017-04-21
 RUN apt-get -qq update \
         && apt-get install -y g++ nano pigz wget \
         && apt-get clean
 
 # 3. JAVA
 # Install java
-ENV JAVA_REFRESHED_AT 2017-03-20
+ENV JAVA_REFRESHED_AT 2017-04-21
 RUN apt-get -qq update && apt-get install -y openjdk-8* && apt-get clean
 
 # 4. PYTHON+PIP
 # Install python, python-dev
-ENV PYTHON_REFRESHED_AT 2017-03-20
+ENV PYTHON_REFRESHED_AT 2017-04-21
 RUN apt-get -qq update \
         && apt-get install -y python python-dev \
         && apt-get clean
 # Download get-pip.py file to '/tmp' directory
-ENV PIP_REFRESHED_AT 2017-03-20
+ENV PIP_REFRESHED_AT 2017-04-21
 RUN wget --directory-prefix /tmp https://bootstrap.pypa.io/get-pip.py
 # Install pip
 RUN python /tmp/get-pip.py
