@@ -30,7 +30,7 @@ PySpark
 Start a container with interactive PySpark shell::
 
     $ docker run -it korniichuk/pyspark \
-            /usr/local/src/spark-2.0.1-bin-hadoop2.7/bin/pyspark
+            /usr/local/src/spark-2.1.0-bin-hadoop2.7/bin/pyspark
 
 Try the following command, which should return 1000::
 
